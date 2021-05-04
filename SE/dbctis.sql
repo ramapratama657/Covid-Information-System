@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2021 at 04:54 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Waktu pembuatan: 01 Bulan Mei 2021 pada 16.38
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbtestcentre`
+-- Struktur dari tabel `tbtestcentre`
 --
 
 CREATE TABLE `tbtestcentre` (
@@ -33,18 +33,20 @@ CREATE TABLE `tbtestcentre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbtestcentre`
+-- Dumping data untuk tabel `tbtestcentre`
 --
 
 INSERT INTO `tbtestcentre` (`id`, `testcentrename`) VALUES
-(1, 'RS Denpasar'),
-(19, 'RS Klungkung'),
-(20, 'RS Widya');
+(6, 'RS Bangli'),
+(8, 'RS Denpasar Selatan'),
+(4, 'RS Dharma Yadnya'),
+(9, 'RS Gianyar'),
+(13, 'RS Karangasem');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbtestkit`
+-- Struktur dari tabel `tbtestkit`
 --
 
 CREATE TABLE `tbtestkit` (
@@ -55,19 +57,17 @@ CREATE TABLE `tbtestkit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbtestkit`
+-- Dumping data untuk tabel `tbtestkit`
 --
 
 INSERT INTO `tbtestkit` (`id`, `testkitname`, `stock`, `testcentrename`) VALUES
-(1, 'Paracetamol', 10, 'RS Denpasar'),
-(7, 'AntiBiotik', 15, 'RS Denpasar'),
-(8, 'paracetamol 500mg', 20, 'RS Klungkung'),
-(9, 'paracetamol 500mg', 20, 'RS Klungkung');
+(1, 'Paracetamol', 45, 'RS Bangli'),
+(3, 'panadol ekstra', 12, 'RS Gianyar');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbtestreport`
+-- Struktur dari tabel `tbtestreport`
 --
 
 CREATE TABLE `tbtestreport` (
@@ -83,19 +83,18 @@ CREATE TABLE `tbtestreport` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbtestreport`
+-- Dumping data untuk tabel `tbtestreport`
 --
 
 INSERT INTO `tbtestreport` (`id`, `user_id`, `name`, `patienttype`, `symptoms`, `result`, `status`, `testcentrename`, `reportDate`) VALUES
-(1, 4, 'Rama', 'Suspected', 'Cough', 'Negative, only normal cough', 'Complete', 'RS Khuntul', '2021-05-02 02:29:53'),
-(29, 42, 'adnya', 'Close Contact', 'flu', '', 'Pending', 'RS Klungkung', '2021-05-02 02:29:53'),
-(30, 45, 'Lia', 'Suspected', 'Cough', '', 'Pending', 'RS Khuntul', '2021-05-02 02:29:53'),
-(31, 45, 'Lia', 'Suspected', 'Cough', '', 'Pending', 'RS Khuntul', '2021-05-02 02:29:53');
+(14, 21, 'patient1', 'Quarantined', 'Vomitting', 'Positive', 'Complete', 'RS Bangli', '2021-05-01 14:34:03'),
+(16, 21, 'patient1', 'Close Contact', 'Alergi Babi', 'Positive', 'Complete', 'RS Bangli', '2021-05-01 14:34:03'),
+(21, 34, 'Joko', 'Returnee', 'Sakit Pala', '', 'Pending', 'RS Gianyar', '2021-05-01 14:34:03');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbuser`
+-- Struktur dari tabel `tbuser`
 --
 
 CREATE TABLE `tbuser` (
@@ -108,39 +107,35 @@ CREATE TABLE `tbuser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbuser`
+-- Dumping data untuk tabel `tbuser`
 --
 
 INSERT INTO `tbuser` (`id`, `username`, `password`, `levelakun`, `name`, `testcentrename`) VALUES
 (1, 'admin', '$2y$10$ECFbWdSRfFOu7vnHOd3gfOGNpiQpzaUoUVFq4oOyRIMVMyZ6RZaTi', 'admin', 'admin', '0'),
-(2, 'khuntul', '$2y$10$1.pvjPM8GFnnMHdjFph0ouYHA4gBHAgCDC9mwxnS2A1/FfRVfwgvy', 'tester', 'Sikuntul', 'RS Khuntul'),
-(3, 'mhamanx', '$2y$10$70SYKxoiFy.XOMimholkQuSGk5BDyrk.wGY/Z4G4.2kBNLWgrdrrC', 'patient', 'Simhamanx', 'RS Khuntul'),
-(4, 'rama', '$2y$10$zBZh5IEHcLm5KYsLqoL6NOvXrbiIkWmiI99LuZmTRM49bFCDv7D12', 'patient', 'Rama', 'RS Khuntul'),
-(41, 'komang', '$2y$10$L2L4GvZ9FVRuuPf0Po/xfurWN4g4UoHOEVN8XzJt1C9nwZWjc1GKi', 'tester', 'Komang Lia', 'RS Klungkung'),
-(42, 'adnya', '$2y$10$iNPyZ96qAVpApZ/PfUTk0.DcH9HaAhG6Gv46syN/6ezQ7RsmVZMjK', 'patient', 'adnya', 'RS Klungkung'),
-(43, 'pratama', '$2y$10$A3KGgA.FhIt9A0E14gqlDOXFEjYXYzbi8pGhcxfcbRdAHW.aFWHqm', 'tester', 'Pratama Putra', 'RS Denpasar'),
-(45, 'liacantik', '$2y$10$uR5yhMsRqD12l9YkC7Uel.DBtm3AxfOttsO3SuRfvuJAIQGMautiO', 'patient', 'Lia', 'RS Khuntul');
+(6, 'tester1', '$2y$10$K/dRzUWCvYMFKQWqo8COe.R8s49IZ1vNB5KjJahkEQtfVg2R3dybi', 'tester', 'Gempol', 'RS Gianyar'),
+(21, 'patient1', '$2y$10$2Wr.jG.jLaebHt2osHdKv.0DLdyFS3TWZUVjCfcN15pjC3flP53wK', 'patient', 'patient1', 'RS Denpasar'),
+(34, 'patient2', '$2y$10$HrjqrI.s1h4NHHMQ72POK.wkNKnE2q.CIYXPX.b9Y0D1vuBQMg2HK', 'patient', 'Joko', 'RS Gianyar');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbtestcentre`
+-- Indeks untuk tabel `tbtestcentre`
 --
 ALTER TABLE `tbtestcentre`
   ADD PRIMARY KEY (`id`),
   ADD KEY `testcentrename` (`testcentrename`);
 
 --
--- Indexes for table `tbtestkit`
+-- Indeks untuk tabel `tbtestkit`
 --
 ALTER TABLE `tbtestkit`
   ADD PRIMARY KEY (`id`),
   ADD KEY `testcentrename` (`testcentrename`);
 
 --
--- Indexes for table `tbtestreport`
+-- Indeks untuk tabel `tbtestreport`
 --
 ALTER TABLE `tbtestreport`
   ADD PRIMARY KEY (`id`),
@@ -148,46 +143,46 @@ ALTER TABLE `tbtestreport`
   ADD KEY `fk_test_report` (`user_id`);
 
 --
--- Indexes for table `tbuser`
+-- Indeks untuk tabel `tbuser`
 --
 ALTER TABLE `tbuser`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`) USING BTREE;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbtestcentre`
+-- AUTO_INCREMENT untuk tabel `tbtestcentre`
 --
 ALTER TABLE `tbtestcentre`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `tbtestkit`
+-- AUTO_INCREMENT untuk tabel `tbtestkit`
 --
 ALTER TABLE `tbtestkit`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbtestreport`
+-- AUTO_INCREMENT untuk tabel `tbtestreport`
 --
 ALTER TABLE `tbtestreport`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `tbuser`
+-- AUTO_INCREMENT untuk tabel `tbuser`
 --
 ALTER TABLE `tbuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `tbtestreport`
+-- Ketidakleluasaan untuk tabel `tbtestreport`
 --
 ALTER TABLE `tbtestreport`
   ADD CONSTRAINT `fk_test_report` FOREIGN KEY (`user_id`) REFERENCES `tbuser` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

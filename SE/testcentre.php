@@ -69,7 +69,7 @@ $name = $_SESSION['username'];
                                 <table class="table table-hover justify-content-center mx-auto border">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th class="col-md-2">#</th>
                                         <th class="col-md-6">Test Centre Name</th>
                                         <th>Action</th>
                                     </tr>
